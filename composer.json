@@ -1,0 +1,32 @@
+{
+  "name": "carno-php/hrpcc",
+  "license": "MIT",
+  "require": {
+    "carno-php/container": "^1.0",
+    "carno-php/coroutine": "^1.0",
+    "carno-php/promise": "^1.0",
+    "carno-php/cluster": "^1.0",
+    "carno-php/chain": "^1.0",
+    "carno-php/http": "^1.0",
+    "carno-php/pool": "^1.0",
+    "carno-php/rpc": "^1.0",
+    "carno-php/net": "^1.0"
+  },
+  "suggest": {
+    "carno-php/tracing": "Supports RPC requests tracing"
+  },
+  "autoload": {
+    "psr-4": {
+      "Carno\\HRPC\\Client\\": "src"
+    },
+    "files": [
+      "src/.init.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
