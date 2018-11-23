@@ -8,9 +8,10 @@
 
 namespace Carno\HRPC\Client;
 
+use Carno\Cluster\Classify\Scenes;
 use Carno\Cluster\Resources;
 use Carno\HRPC\Client\Chips\Options;
-use Carno\HRPC\Client\Exception\ServerMissingException;
+use Carno\HRPC\Client\Exception\EndpointsNotFoundException;
 use Carno\HTTP\Client;
 use Carno\RPC\Contracts\Client\Cluster;
 
@@ -62,7 +63,7 @@ class Clustered implements Cluster
             $this->targets[$server] = new Endpoints($server, $this->tags(), $this->options($server))
         ;
 
-        $this->resources->initialize('', $server, $cluster);
+        $this->resources->initialize(Scenes::SERVICE, '', $server, $cluster);
     }
 
     /**
@@ -73,7 +74,7 @@ class Clustered implements Cluster
     public function picking(string $server, string ...$tags) : object
     {
         if (is_null($endpoints = $this->targets[$server] ?? null)) {
-            throw new ServerMissingException;
+            throw new EndpointsNotFoundException;
         } else {
             return $endpoints->select(...$tags);
         }
