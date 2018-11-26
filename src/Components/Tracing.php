@@ -35,14 +35,14 @@ class Tracing extends Component implements Bootable
     public function starting(Application $app) : void
     {
         /**
-         * @var Observer $observer
+         * @var Observer $platform
          */
 
-        $observer = DI::get(Observer::class);
+        $platform = DI::get(Observer::class);
 
-        $observer->transportable(static function () {
+        $platform->transportable(static function () {
             Client::layers()->has(TracedRequesting::class)
-                || Client::layers()->append(Selector::class, DI::object(TracedRequesting::class));
+            || Client::layers()->append(Selector::class, DI::object(TracedRequesting::class));
         }, static function () {
             Client::layers()->remove(TracedRequesting::class);
         });
