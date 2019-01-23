@@ -10,6 +10,7 @@ namespace Carno\HRPC\Client;
 
 use Carno\Cluster\Classify\Scenes;
 use Carno\Cluster\Resources;
+use Carno\HRPC\Client\Chips\Modifier;
 use Carno\HRPC\Client\Chips\Options;
 use Carno\HRPC\Client\Exception\EndpointsNotFoundException;
 use Carno\HTTP\Client;
@@ -17,7 +18,7 @@ use Carno\RPC\Contracts\Client\Cluster;
 
 class Clustered implements Cluster
 {
-    use Options;
+    use Options, Modifier;
 
     /**
      * @var Resources
@@ -60,7 +61,7 @@ class Clustered implements Cluster
     {
         $cluster =
             $this->targets[$server] ??
-            $this->targets[$server] = new Endpoints($server, $this->tags(), $this->options($server))
+            $this->targets[$server] = $this->modifying(new Endpoints($server, $this->tags(), $this->options($server)))
         ;
 
         $this->resources->initialize(Scenes::SERVICE, '', $server, $cluster);

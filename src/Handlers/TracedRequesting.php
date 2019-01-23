@@ -11,6 +11,7 @@ namespace Carno\HRPC\Client\Handlers;
 use Carno\Chain\Layered;
 use Carno\Coroutine\Context;
 use Carno\HRPC\Client\Chips\ErrorsClassify;
+use Carno\HRPC\Client\Contracts\TRC;
 use Carno\HRPC\Client\Selector;
 use Carno\HTTP\Client;
 use Carno\HTTP\Standard\Helper as PSRHelper;
@@ -66,6 +67,7 @@ class TracedRequesting implements Layered
                 TAG::SPAN_KIND => TAG::SPAN_KIND_RPC_CLIENT,
                 EXT::REMOTE_ENDPOINT => new Endpoint($request->server(), $cli->restricted()),
                 TAG::ROUTE_TAGS => implode(',', $request->getTags()),
+                TRC::TAG_CLI_APT => get_class($cli),
             ],
             [],
             FMT::HTTP_HEADERS,

@@ -9,6 +9,8 @@
 namespace Carno\HRPC\Client;
 
 use Carno\Cluster\Managed;
+use Carno\Container\DI;
+use Carno\HRPC\Client\Contracts\Defined;
 use Carno\HTTP\Client;
 use Carno\HTTP\Options;
 use Carno\Net\Endpoint;
@@ -59,6 +61,9 @@ class Endpoints extends Managed
      */
     protected function connecting(Endpoint $endpoint)
     {
+        if ($hjc = $endpoint->option(Defined::HJ_CLIENT)) {
+            return DI::object($hjc, $this->options, $endpoint);
+        }
         return new Client($this->options, $endpoint->address());
     }
 

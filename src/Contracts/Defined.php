@@ -18,6 +18,8 @@ interface Defined
     public const V_TYPE_JSON = 'application/json';
     public const V_TYPE_PROTO = 'application/x-protobuf';
 
+    public const HJ_CLIENT = 'x:hj-client';
+
     public const OPTS_POOL = [
         'rpc.client.pool' => [
             'conn.initial' => 'initial',
