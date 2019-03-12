@@ -69,6 +69,14 @@ class Clustered implements Cluster
 
     /**
      * @param string $server
+     */
+    public function leaving(string $server) : void
+    {
+        $this->resources->forget('', $server);
+    }
+
+    /**
+     * @param string $server
      * @param string ...$tags
      * @return Client
      */
