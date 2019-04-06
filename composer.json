@@ -19,9 +19,16 @@
     "psr-4": {
       "Carno\\HRPC\\Client\\": "src"
     },
-    "files": [
-      "src/.init.php"
-    ]
+    "files": [".init.php"]
+  },
+  "require-dev": {
+    "carno-php/console": "^1.0",
+    "carno-php/serving": "^1.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Carno\\HRPC\\Client\\Tests\\": "tests"
+    }
   },
   "minimum-stability": "dev",
   "extra": {
