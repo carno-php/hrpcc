@@ -18,7 +18,8 @@ use Carno\RPC\Contracts\Client\Cluster;
 
 class Clustered implements Cluster
 {
-    use Options, Modifier;
+    use Options;
+    use Modifier;
 
     /**
      * @var Resources
@@ -83,7 +84,7 @@ class Clustered implements Cluster
     public function picking(string $server, string ...$tags) : object
     {
         if (is_null($endpoints = $this->targets[$server] ?? null)) {
-            throw new EndpointsNotFoundException;
+            throw new EndpointsNotFoundException();
         } else {
             return $endpoints->select(...$tags);
         }

@@ -25,7 +25,8 @@ use Carno\RPC\Protocol\Response as RResponse;
 
 class Dispatcher implements Invoker
 {
-    use Layers, ErrorsHelper;
+    use Layers;
+    use ErrorsHelper;
 
     /**
      * @var Clustered

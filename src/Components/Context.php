@@ -48,7 +48,7 @@ class Context extends Component implements Bootable
 
             $client = DI::has(ContextPacking::class)
                 ? DI::get(ContextPacking::class)
-                : DI::set(ContextPacking::class, new ContextPacking)
+                : DI::set(ContextPacking::class, new ContextPacking())
             ;
 
             $client->keys(...$keys);
@@ -57,8 +57,8 @@ class Context extends Component implements Bootable
                 || Client::layers()->prepend(Invoker::class, $client);
         };
 
-        $app->starting()->add(static function () use ($handler) {
-            config()->watching(self::CONF_KEY, $handler);
+        $app->starting()->add(static function () use ($app, $handler) {
+            $app->conf()->watching(self::CONF_KEY, $handler);
         });
     }
 }

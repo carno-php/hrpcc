@@ -48,11 +48,11 @@ class Invoker extends Component implements Bootable
         $c = new Clustered(DI::get(Resources::class), ...($tags ?? []));
 
         // custom configure
-        $c->configure(static function (string $server) {
-            return config()->bind(
-                (new HOptions)
+        $c->configure(static function (string $server) use ($app) {
+            return $app->conf()->bind(
+                (new HOptions())
                     ->setTimeouts()
-                    ->keepalive(config()->bind(new POptions, Defined::OPTS_POOL), "rpc:{$server}"),
+                    ->keepalive($app->conf()->bind(new POptions(), Defined::OPTS_POOL), "rpc:{$server}"),
                 Defined::OPTS_HTTP
             );
         });

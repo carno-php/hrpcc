@@ -29,8 +29,12 @@ use Throwable;
 
 class TracedRequesting implements Layered
 {
-    use SpansCreator, SpansLinker;
-    use ErrorsClassify, PSRHelper;
+    use ErrorsClassify;
+
+    use SpansCreator;
+    use SpansLinker;
+
+    use PSRHelper;
 
     /**
      * @var Platform
@@ -58,7 +62,7 @@ class TracedRequesting implements Layered
          */
         $cli = $request->getExtra(Selector::CLI);
 
-        $http = new HRequest;
+        $http = new HRequest();
 
         $this->newSpan(
             $ctx,

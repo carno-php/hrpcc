@@ -15,6 +15,6 @@ class EndpointsMod implements Modify
 {
     public function handle(Endpoints $eps) : void
     {
-        $eps->routing()->typeset()->extend(new ClientRouter);
+        $eps->routing()->typeset()->extend(new ClientRouter());
     }
 }

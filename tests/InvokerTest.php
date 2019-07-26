@@ -40,7 +40,7 @@ class InvokerTest extends TestCase
 
     public function testInvoke()
     {
-        $def = new InputDefinition;
+        $def = new InputDefinition();
         $def->addOption(new InputOption(
             Options::SERVICE_DISCOVERY,
             null,
@@ -49,7 +49,7 @@ class InvokerTest extends TestCase
             'config'
         ));
 
-        $app = new App;
+        $app = new App();
         $app->inputs(new ArrayInput([], $def));
 
         $components = CARNO_COMPONENTS_HRPCC;
@@ -77,7 +77,7 @@ class InvokerTest extends TestCase
          */
         $cluster = DI::get(Cluster::class);
 
-        $cluster->modifier(new EndpointsMod);
+        $cluster->modifier(new EndpointsMod());
         $cluster->joining(self::SERVER);
 
         $selector = new Selector($cluster);

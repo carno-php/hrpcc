@@ -38,7 +38,7 @@ trait Options
         if ($this->generator) {
             return ($this->generator)($server);
         } else {
-            return (new HOptions)->setTimeouts()->keepalive(new POptions, "rpc:{$server}");
+            return (new HOptions())->setTimeouts()->keepalive(new POptions(), "rpc:{$server}");
         }
     }
 }
