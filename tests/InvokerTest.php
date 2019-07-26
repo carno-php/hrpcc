@@ -12,6 +12,7 @@ use Carno\Cluster\Resources;
 use Carno\Console\App;
 use Carno\Console\Contracts\Bootable;
 use Carno\Container\DI;
+use function Carno\Config\conf;
 use function Carno\Coroutine\ctx;
 use function Carno\Coroutine\go;
 use Carno\HRPC\Client\Clustered;
@@ -69,7 +70,7 @@ class InvokerTest extends TestCase
         $resources = DI::get(Resources::class);
         $resources->startup();
 
-        config(ScopedConf::SRV)->set(sprintf(':%s', self::SERVER), '127.0.0.1:80 #TEST');
+        conf(ScopedConf::SRV)->set(sprintf(':%s', self::SERVER), '127.0.0.1:80 #TEST');
 
         /**
          * @var Cluster $cluster

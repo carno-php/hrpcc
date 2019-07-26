@@ -2,6 +2,7 @@
   "name": "carno-php/hrpcc",
   "license": "MIT",
   "require": {
+    "php": "^7.2",
     "carno-php/container": "^1.0",
     "carno-php/coroutine": "^1.0",
     "carno-php/promise": "^1.0",
@@ -22,8 +23,8 @@
     "files": [".init.php"]
   },
   "require-dev": {
-    "carno-php/console": "^1.0",
-    "carno-php/serving": "^1.0"
+    "carno-php/console": "~2.0",
+    "carno-php/serving": "~2.0"
   },
   "autoload-dev": {
     "psr-4": {
@@ -33,7 +34,7 @@
   "minimum-stability": "dev",
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0-dev"
+      "dev-master": "2.0-dev"
     }
   }
 }
